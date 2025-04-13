@@ -16,7 +16,7 @@ RUN pip install --no-cache-dir -r api_requirements.txt
 COPY thaiaddress/ /app/thaiaddress/
 
 # Install the thaiaddress package
-RUN pip install -e .
+RUN pip install -r api_requirements.txt
 
 # Copy the application code
 COPY app.py .
