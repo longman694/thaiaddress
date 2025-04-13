@@ -4,6 +4,10 @@ Parser for Thai address. ไลบรารี่เพื่อแยกแย�
 
 สำหรับรายละเอียดเพิ่มเติมสามารถดูได้จาก [Data Science meetup, BKK #11](https://www.youtube.com/watch?v=0tPkQR_vXwc)
 
+## Requirements
+
+- Python 3.8 or higher
+
 ## Installation
 
 You can install a recent development (recommended) using `pip` directly
@@ -50,7 +54,8 @@ on our validation set.
 
 ## Development Plan
 
-- This is an early version of our parser with very little data. We will make a better model relatively soon.
+- This is a refactored version of the original parser, updated to work with newer Python versions and libraries.
+- The original model is still used, but the code has been modernized to work with current dependencies.
 
 ## Developers
 

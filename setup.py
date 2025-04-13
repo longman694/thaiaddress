@@ -21,6 +21,26 @@ def get_version():
         if "__version__" in line:
             return line.split("=")[1].strip().strip("'").strip('"')
 
+requires = [
+    "joblib==1.4.2",
+    "deepcut==0.7.0.0",
+    "spacy==3.8.5",
+    "pythainlp==5.1.1",
+    "sklearn-crfsuite==0.5.0",
+    "numpy==2.1.3",
+    "scikit-learn==1.6.1",
+    "jsonlines==4.0.0",
+    "fuzzywuzzy==0.18.0",
+    "python-Levenshtein==0.27.1",
+    "pandas==2.2.3",
+    "eli5==0.15.0",
+    "scipy==1.15.2"
+]
+
+test_requires = requires + [
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+]
 
 if __name__ == "__main__":
     setup(
@@ -29,28 +49,14 @@ if __name__ == "__main__":
         description="A Python parser for Thai address",
         long_description=long_description,
         long_description_content_type='text/markdown',
-        python_requires=">=3.6",
+        python_requires=">=3.8,<3.13",
         url="https://github.com/425degree-developers/thaiaddress",
         download_url="https://github.com/425degree-developers/thaiaddress.git",
         author="Titipat Achakulvisut",
         author_email="my.titipat@gmail.com",
         license="Apache Software License 2.0 (c) 2020 Titipat Achakulvisut, 425 Degree Co., Bangkok, Thailand",
-        install_requires=[
-            "joblib",
-            "deepcut",
-            "spacy",
-            "pythainlp",
-            "sklearn_crfsuite",
-            "numpy",
-            "pytest",
-            "pytest-cov",
-            "scikit-learn",
-            "jsonlines",
-            "fuzzywuzzy",
-            "pandas",
-            "eli5",
-            "scipy"
-        ],
+        install_requires=requires,
+        test_requires=test_requires,
         packages=find_packages(),
         include_package_data=True,
         keywords=[
@@ -70,9 +76,11 @@ if __name__ == "__main__":
             "Operating System :: Unix",
             "Operating System :: MacOS",
             "Programming Language :: Python :: 3",
-            "Programming Language :: Python :: 3.6",
-            "Programming Language :: Python :: 3.7",
             "Programming Language :: Python :: 3.8",
+            "Programming Language :: Python :: 3.9",
+            "Programming Language :: Python :: 3.10",
+            "Programming Language :: Python :: 3.11",
+            "Programming Language :: Python :: 3.12",
         ],
         platforms="any",
         project_urls={

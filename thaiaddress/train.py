@@ -1,5 +1,6 @@
 import joblib
 import deepcut
+from typing import List, Dict, Tuple, Any, Optional
 import jsonlines
 
 import scipy
@@ -22,7 +23,7 @@ LABELS_MAP = {
 LABELS = list(LABELS_MAP.values())
 
 
-def address_to_token(address: dict):
+def address_to_token(address: Dict[str, Any]) -> Optional[List[Tuple[str, str]]]:
     """
     Transform address dictionary to a list of tokens
 
@@ -55,7 +56,7 @@ def address_to_token(address: dict):
         return None
 
 
-def address_to_feature(address: dict):
+def address_to_feature(address: Dict[str, Any]) -> Tuple[List[Dict[str, Any]], List[str]]:
     """
     Transform address dictionary to features and labels
     """
@@ -65,7 +66,7 @@ def address_to_feature(address: dict):
     return features, labels
 
 
-def addresses_to_features(addresses: list):
+def addresses_to_features(addresses: List[Dict[str, Any]]) -> Tuple[List[List[Dict[str, Any]]], List[List[str]]]:
     """
     Transform list of addresses to features and labels
     """
@@ -79,7 +80,7 @@ def addresses_to_features(addresses: list):
     return X, y
 
 
-def read_file(file_path: str) -> list:
+def read_file(file_path: str) -> List[Dict[str, Any]]:
     """
     Read traning path in JSON and return it into a list
     """
@@ -90,7 +91,7 @@ def read_file(file_path: str) -> list:
     return addresses
 
 
-def save_to_file(addresses: list, file_path: str, clean_text=True):
+def save_to_file(addresses: List[Any], file_path: str, clean_text: bool = True) -> None:
     """
     Save list of addresses into a JSON line file
     """
@@ -108,7 +109,7 @@ def save_to_file(addresses: list, file_path: str, clean_text=True):
     print("Done saving to {}".format(file_path))
 
 
-def train(file_path: str, model_path: str = None):
+def train(file_path: str, model_path: Optional[str] = None) -> CRF:
     """
     Training CRF model from a given ``file_path``
     """

@@ -1,12 +1,13 @@
 import re
 from itertools import groupby
+from typing import List, Tuple, Union, Optional
 import numpy as np
 import deepcut
 from pythainlp.util import isthai
 from pythainlp.corpus import thai_stopwords
 
 
-def remove_emoji(text):
+def remove_emoji(text: str) -> str:
     """
     Remove emojis from a given text
     """
@@ -85,7 +86,7 @@ def is_stopword(word: str) -> bool:  # เช็คว่าเป็นคำ�
     return word in thai_stopwords()
 
 
-def range_intersect(r1: range, r2: range):
+def range_intersect(r1: range, r2: range) -> Optional[range]:
     """
     Check if range is intersected
 
@@ -96,7 +97,7 @@ def range_intersect(r1: range, r2: range):
     return range(max(r1.start, r2.start), min(r1.stop, r2.stop)) or None
 
 
-def merge_labels(preds: list):
+def merge_labels(preds: list) -> Tuple[List[Tuple[int, int]], List[str]]:
     """
     Get merged labels and merge tuple to merge tokens
     """
@@ -112,7 +113,7 @@ def merge_labels(preds: list):
     return merge, labels
 
 
-def merge_tokens(tokens: list, merge: list) -> list:
+def merge_tokens(tokens: List[str], merge: List[Tuple[int, int]]) -> List[str]:
     """
     Merge tokens with an input merge
 

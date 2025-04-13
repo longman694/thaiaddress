@@ -5,6 +5,7 @@ import joblib
 import pandas as pd
 from fuzzywuzzy import process
 from spacy import displacy
+import spacy
 from pythainlp import tokenize
 from .utils import (
     preprocess,
@@ -56,7 +57,7 @@ def extract_location(
         ``district``, or ``subdistrict``
     province: str or None, if provided, we will only search
         for districts and subdistrcts within a given province
-    
+
     Output
     ------
     location: str, output of location that best match with our
@@ -134,9 +135,18 @@ def display_entities(tokens: list, labels: list):
         s += len(token)
 
     text_display = {"text": text, "ents": ents, "title": None}
-    displacy.render(
-        text_display, style="ent", options=options, manual=True, jupyter=True
-    )
+    try:
+        # For newer versions of spaCy that may not support jupyter=True directly
+        displacy.render(
+            text_display, style="ent", options=options, manual=True, jupyter=True
+        )
+    except TypeError:
+        # Fallback for newer spaCy versions
+        from IPython.display import display
+        html = displacy.render(
+            text_display, style="ent", options=options, manual=True, jupyter=False
+        )
+        display(html)
 
 
 def tokens_to_features(tokens: list, i: int) -> dict:
@@ -204,7 +214,7 @@ def parse(text: str, display: bool = False, tokenize_engine="deepcut") -> dict:
 
     Output
     ------
-    address: dict, parsed output 
+    address: dict, parsed output
     """
     text = preprocess(text)
 
