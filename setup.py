@@ -40,6 +40,7 @@ requires = [
 test_requires = requires + [
     "pytest>=7.4.0",
     "pytest-cov>=4.1.0",
+    "requests>=2.32.0"
 ]
 
 if __name__ == "__main__":
